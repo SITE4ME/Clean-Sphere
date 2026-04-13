@@ -53,7 +53,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
 .nav-links a {
   text-decoration: none; font-size: 0.85rem; font-weight: 500;
   color: var(--text-light); padding: 6px 12px; border-radius: 8px;
-  transition: all 0.3s ease; position: relative;
+  transition: all 0.3s ease; position: relative; cursor: pointer;
 }
 .nav-links a:hover, .nav-links a.active {
   color: var(--dark-green); background: var(--light-green);
@@ -68,10 +68,20 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
 }
 .mobile-menu a {
   text-decoration: none; padding: 12px 16px; color: var(--text);
-  font-weight: 500; border-radius: 10px; transition: 0.3s;
+  font-weight: 500; border-radius: 10px; transition: 0.3s; cursor: pointer;
 }
 .mobile-menu a:hover { background: var(--light-green); color: var(--dark-green); }
 .mobile-menu.open { display: flex; }
+
+/* PAGE SECTIONS - Only one visible at a time */
+.page-section {
+  display: none;
+  padding-top: 70px;
+  min-height: 100vh;
+}
+.page-section.active {
+  display: block;
+}
 
 /* HERO */
 #home {
@@ -169,7 +179,7 @@ section { padding: 100px 5%; }
 .section-center .section-desc { margin: 0 auto; }
 
 /* ABOUT */
-#about { background: var(--bg2); }
+#about-section { background: var(--bg2); }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 60px; }
 .about-visual {
   background: var(--grad); border-radius: 24px; padding: 50px;
@@ -199,7 +209,7 @@ section { padding: 100px 5%; }
 .about-point p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
 
 /* AWARENESS */
-#awareness { background: #fff; }
+#awareness-section { background: #fff; }
 .awareness-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 60px; }
 .awareness-card {
   background: #fff; border-radius: 20px; padding: 36px 24px;
@@ -225,7 +235,7 @@ section { padding: 100px 5%; }
 .awareness-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; position: relative; z-index: 1; transition: color 0.4s; }
 
 /* LEARN */
-#learn { background: var(--bg2); }
+#learn-section { background: var(--bg2); }
 .rrs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
 .rr-card {
   border-radius: 20px; overflow: hidden;
@@ -250,7 +260,7 @@ section { padding: 100px 5%; }
 .donts li::before { content: '✗'; color: #ef4444; font-weight: 700; flex-shrink: 0; }
 
 /* SHARE YOUR WORK */
-#share { background: #fff; }
+#share-section { background: #fff; }
 .share-layout { display: grid; grid-template-columns: 380px 1fr; gap: 40px; margin-top: 60px; align-items: start; }
 .auth-card {
   background: #fff; border-radius: 24px; padding: 36px;
@@ -321,7 +331,7 @@ section { padding: 100px 5%; }
 }
 
 /* RAISE ISSUE */
-#raise-issue { background: var(--bg2); }
+#complaint-section { background: var(--bg2); }
 .issue-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 60px; }
 .issue-info { }
 .issue-info h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 16px; }
@@ -367,7 +377,7 @@ section { padding: 100px 5%; }
 .success-msg p { font-size: 0.85rem; color: var(--text-light); margin-top: 6px; }
 
 /* QUIZ */
-#quiz { background: #fff; }
+#quiz-section { background: #fff; }
 .quiz-container { max-width: 750px; margin: 60px auto 0; }
 .quiz-intro {
   background: var(--grad); border-radius: 24px; padding: 60px 40px;
@@ -518,30 +528,8 @@ section { padding: 100px 5%; }
 }
 .cert-download-btn:hover { opacity: 0.9; }
 
-/* FOOTER */
-footer {
-  background: #0f172a; color: rgba(255,255,255,0.7); padding: 60px 5% 30px;
-}
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
-.footer-brand .logo { margin-bottom: 16px; display: block; }
-.footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
-.footer-col h5 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 20px; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-col li a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.85rem; transition: color 0.3s; }
-.footer-col li a:hover { color: var(--green); }
-.social-icons { display: flex; gap: 12px; margin-top: 20px; }
-.social-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.3s; font-size: 0.9rem;
-}
-.social-icon:hover { background: var(--green); color: #fff; transform: translateY(-3px); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
-.footer-bottom p { font-size: 0.8rem; }
-.footer-bottom .dev { color: var(--green); font-weight: 600; }
-
 /* GET INVOLVED */
-#get-involved { background: var(--bg2); }
+#get-involved-section { background: var(--bg2); }
 .involved-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
 .involved-card {
   background: #fff; border-radius: 20px; padding: 36px 28px;
@@ -558,6 +546,28 @@ footer {
 }
 .btn-outline:hover { background: var(--green); color: #fff; }
 
+/* FOOTER */
+footer {
+  background: #0f172a; color: rgba(255,255,255,0.7); padding: 60px 5% 30px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+.footer-brand .logo { margin-bottom: 16px; display: block; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+.footer-col h5 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 20px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col li a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.85rem; transition: color 0.3s; cursor: pointer; }
+.footer-col li a:hover { color: var(--green); }
+.social-icons { display: flex; gap: 12px; margin-top: 20px; }
+.social-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.3s; font-size: 0.9rem;
+}
+.social-icon:hover { background: var(--green); color: #fff; transform: translateY(-3px); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.footer-bottom p { font-size: 0.8rem; }
+.footer-bottom .dev { color: var(--green); font-weight: 600; }
+
 /* ANIMATIONS */
 .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -573,7 +583,6 @@ footer {
   .issue-layout { grid-template-columns: 1fr; }
   .involved-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
-  .hero-stats { gap: 24px; }
 }
 @media (max-width: 600px) {
   section { padding: 70px 5%; }
@@ -590,455 +599,274 @@ footer {
 
 <!-- NAVBAR -->
 <nav id="navbar">
-  <div class="logo">🌿 CleanSphere</div>
+  <div class="logo" onclick="navigateTo('home')" style="cursor:pointer;">🌿 CleanSphere</div>
   <ul class="nav-links">
-    <li><a href="#home" class="active">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#awareness">Awareness</a></li>
-    <li><a href="#learn">Learn</a></li>
-    <li><a href="#quiz">Quiz</a></li>
-    <li><a href="#get-involved">Get Involved</a></li>
-    <li><a href="#raise-issue">Raise Issue</a></li>
-    <li><a href="#share">Share Work</a></li>
-    <li><a href="#home" onclick="scrollToTop()">Contact</a></li>
+    <li><a onclick="navigateTo('home')" class="active">Home</a></li>
+    <li><a onclick="navigateTo('about')">About</a></li>
+    <li><a onclick="navigateTo('awareness')">Awareness</a></li>
+    <li><a onclick="navigateTo('learn')">Learn</a></li>
+    <li><a onclick="navigateTo('quiz')">Quiz</a></li>
+    <li><a onclick="navigateTo('get-involved')">Get Involved</a></li>
+    <li><a onclick="navigateTo('complaint')">Raise Issue</a></li>
+    <li><a onclick="navigateTo('share')">Share Work</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#home" onclick="closeMenu()">🏠 Home</a>
-  <a href="#about" onclick="closeMenu()">ℹ️ About</a>
-  <a href="#awareness" onclick="closeMenu()">🌍 Awareness</a>
-  <a href="#learn" onclick="closeMenu()">📚 Learn</a>
-  <a href="#quiz" onclick="closeMenu()">🧠 Quiz</a>
-  <a href="#get-involved" onclick="closeMenu()">🤝 Get Involved</a>
-  <a href="#raise-issue" onclick="closeMenu()">🚨 Raise Issue</a>
-  <a href="#share" onclick="closeMenu()">📸 Share Work</a>
+  <a onclick="navigateTo('home'); closeMenu();">🏠 Home</a>
+  <a onclick="navigateTo('about'); closeMenu();">ℹ️ About</a>
+  <a onclick="navigateTo('awareness'); closeMenu();">🌍 Awareness</a>
+  <a onclick="navigateTo('learn'); closeMenu();">📚 Learn</a>
+  <a onclick="navigateTo('quiz'); closeMenu();">🧠 Quiz</a>
+  <a onclick="navigateTo('get-involved'); closeMenu();">🤝 Get Involved</a>
+  <a onclick="navigateTo('complaint'); closeMenu();">🚨 Raise Issue</a>
+  <a onclick="navigateTo('share'); closeMenu();">📸 Share Work</a>
 </div>
 
-<!-- HERO -->
-<section id="home">
-  <div class="hero-particles">
-    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-badge"><i class="fas fa-leaf"></i> Cleanliness Awareness Platform</div>
-    <h1 class="hero-title"><span>CleanSphere</span></h1>
-    <p class="hero-tagline">Join the Change</p>
-    <p class="hero-sub">A Waste Management Platform</p>
-    <a href="#about" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+<!-- HOME / INTRO PAGE -->
+<div id="home-page" class="page-section active">
+  <section id="home" style="padding-top:0; min-height:100vh; display:flex; align-items:center; justify-content:center;">
+    <div class="hero-particles">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-leaf"></i> Cleanliness Awareness Platform</div>
+      <h1 class="hero-title"><span>CleanSphere</span></h1>
+      <p class="hero-tagline">Join the Change</p>
+      <p class="hero-sub">A Waste Management Platform</p>
+      <button class="btn-primary" onclick="navigateTo('about')">Get Started <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="scroll-indicator"><i class="fas fa-chevron-down"></i><span>Scroll Down</span></div>
+  </section>
+</div>
 
-  </div>
-  <div class="scroll-indicator"><i class="fas fa-chevron-down"></i><span>Scroll Down</span></div>
-</section>
+<!-- ABOUT PAGE -->
+<div id="about-page" class="page-section">
+  <section id="about-section">
+    <div class="fade-in visible">
+      <span class="section-tag">About Us</span>
+      <h2 class="section-title">Why <span>Cleanliness</span> Matters</h2>
+      <p class="section-desc">CleanSphere is a citizen-driven movement dedicated to creating cleaner, healthier communities through awareness, action, and technology.</p>
+    </div>
+    <div class="about-grid fade-in visible">
+      <div class="about-visual">
+        <div class="about-icon-big">🌍</div>
+        <p>Together, we can build cleaner communities and a healthier planet for future generations.</p>
+      </div>
+      <div>
+        <div class="about-points">
+          <div class="about-point">
+            <div class="about-point-icon"><i class="fas fa-heartbeat"></i></div>
+            <div><h4>Public Health Impact</h4><p>Poor sanitation leads to 2.4 million deaths annually. Clean surroundings prevent disease and protect communities.</p></div>
+          </div>
+          <div class="about-point">
+            <div class="about-point-icon"><i class="fas fa-tree"></i></div>
+            <div><h4>Environmental Protection</h4><p>Improper waste disposal harms ecosystems, pollutes water bodies, and contributes to climate change.</p></div>
+          </div>
+          <div class="about-point">
+            <div class="about-point-icon"><i class="fas fa-users"></i></div>
+            <div><h4>Community Building</h4><p>Cleanliness drives bring people together, strengthening social bonds and community pride.</p></div>
+          </div>
+          <div class="about-point">
+            <div class="about-point-icon"><i class="fas fa-chart-line"></i></div>
+            <div><h4>Economic Benefits</h4><p>Clean cities attract tourism and investment, improving quality of life and economic opportunities.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="fade-in">
-    <span class="section-tag">About Us</span>
-    <h2 class="section-title">Why <span>Cleanliness</span> Matters</h2>
-    <p class="section-desc">CleanSphere is a citizen-driven movement dedicated to creating cleaner, healthier communities through awareness, action, and technology.</p>
-  </div>
-  <div class="about-grid fade-in">
-    <div class="about-visual">
-      <div class="about-icon-big">🌍</div>
-      <p>Together, we can build cleaner communities and a healthier planet for future generations.</p>
+<!-- AWARENESS PAGE -->
+<div id="awareness-page" class="page-section">
+  <section id="awareness-section">
+    <div class="section-center fade-in visible">
+      <span class="section-tag">Awareness</span>
+      <h2 class="section-title">Take <span>Action</span> Today</h2>
+      <p class="section-desc">Simple actions, when done collectively, create massive change. Start with these four steps.</p>
     </div>
-    <div>
-      <div class="about-points">
-        <div class="about-point">
-          <div class="about-point-icon"><i class="fas fa-heartbeat"></i></div>
-          <div>
-            <h4>Public Health Impact</h4>
-            <p>Poor sanitation leads to 2.4 million deaths annually. Clean surroundings prevent disease and protect communities.</p>
-          </div>
-        </div>
-        <div class="about-point">
-          <div class="about-point-icon"><i class="fas fa-tree"></i></div>
-          <div>
-            <h4>Environmental Protection</h4>
-            <p>Improper waste disposal harms ecosystems, pollutes water bodies, and contributes to climate change.</p>
-          </div>
-        </div>
-        <div class="about-point">
-          <div class="about-point-icon"><i class="fas fa-users"></i></div>
-          <div>
-            <h4>Community Building</h4>
-            <p>Cleanliness drives bring people together, strengthening social bonds and community pride.</p>
-          </div>
-        </div>
-        <div class="about-point">
-          <div class="about-point-icon"><i class="fas fa-chart-line"></i></div>
-          <div>
-            <h4>Economic Benefits</h4>
-            <p>Clean cities attract tourism and investment, improving quality of life and economic opportunities.</p>
-          </div>
-        </div>
-      </div>
+    <div class="awareness-grid">
+      <div class="awareness-card fade-in visible"><div class="card-icon"><i class="fas fa-broom"></i></div><h3>Maintain Clean Surroundings</h3><p>Keep your home, street, and neighbourhood clean. A clean environment starts with individual responsibility and daily habits.</p></div>
+      <div class="awareness-card fade-in visible"><div class="card-icon"><i class="fas fa-ban"></i></div><h3>Reduce Plastic Usage</h3><p>Say no to single-use plastics. Carry reusable bags, bottles, and containers to significantly reduce plastic pollution.</p></div>
+      <div class="awareness-card fade-in visible"><div class="card-icon"><i class="fas fa-hands-helping"></i></div><h3>Join Community Drives</h3><p>Participate in local cleanliness campaigns and community events. Collective action creates visible, lasting change.</p></div>
+      <div class="awareness-card fade-in visible"><div class="card-icon"><i class="fas fa-star"></i></div><h3>Inspire Others</h3><p>Share your clean habits on social media. Lead by example and encourage friends and family to join the movement.</p></div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- AWARENESS -->
-<section id="awareness">
-  <div class="section-center fade-in">
-    <span class="section-tag">Awareness</span>
-    <h2 class="section-title">Take <span>Action</span> Today</h2>
-    <p class="section-desc">Simple actions, when done collectively, create massive change. Start with these four steps.</p>
-  </div>
-  <div class="awareness-grid">
-    <div class="awareness-card fade-in">
-      <div class="card-icon"><i class="fas fa-broom"></i></div>
-      <h3>Maintain Clean Surroundings</h3>
-      <p>Keep your home, street, and neighbourhood clean. A clean environment starts with individual responsibility and daily habits.</p>
+<!-- LEARN PAGE -->
+<div id="learn-page" class="page-section">
+  <section id="learn-section">
+    <div class="section-center fade-in visible">
+      <span class="section-tag">Learn</span>
+      <h2 class="section-title">The <span>3R Principle</span></h2>
+      <p class="section-desc">The foundation of sustainable waste management — Reduce, Reuse, and Recycle.</p>
     </div>
-    <div class="awareness-card fade-in">
-      <div class="card-icon"><i class="fas fa-ban"></i></div>
-      <h3>Reduce Plastic Usage</h3>
-      <p>Say no to single-use plastics. Carry reusable bags, bottles, and containers to significantly reduce plastic pollution.</p>
+    <div class="rrs-grid fade-in visible">
+      <div class="rr-card"><div class="rr-header reduce"><i class="fas fa-compress-arrows-alt"></i><h3>Reduce</h3><p>Minimize waste generation from the source</p></div><div class="rr-body"><p style="font-size:0.85rem;color:var(--text-light);margin-bottom:16px;line-height:1.6;">Reducing means cutting down the amount of waste you produce. It's the most effective of the 3Rs and should always come first.</p><div class="dos-donts"><div class="dos"><h5>✅ Do's</h5><ul><li>Buy only what you need</li><li>Choose products with less packaging</li><li>Use digital over paper</li><li>Carry reusable bags</li></ul></div><div class="donts"><h5>❌ Don'ts</h5><ul><li>Don't overbuy perishables</li><li>Avoid single-use plastics</li><li>Don't print unnecessarily</li><li>Avoid excessive packaging</li></ul></div></div></div></div>
+      <div class="rr-card"><div class="rr-header reuse"><i class="fas fa-sync-alt"></i><h3>Reuse</h3><p>Give items a second life before discarding</p></div><div class="rr-body"><p style="font-size:0.85rem;color:var(--text-light);margin-bottom:16px;line-height:1.6;">Reusing extends the life of products and materials, reducing the need for new resources and minimizing waste sent to landfills.</p><div class="dos-donts"><div class="dos"><h5>✅ Do's</h5><ul><li>Repair before replacing</li><li>Donate old items</li><li>Use refillable containers</li><li>Repurpose packaging</li></ul></div><div class="donts"><h5>❌ Don'ts</h5><ul><li>Don't discard working items</li><li>Avoid disposable cutlery</li><li>Don't trash repairable things</li><li>Avoid throwaway fashion</li></ul></div></div></div></div>
+      <div class="rr-card"><div class="rr-header recycle"><i class="fas fa-recycle"></i><h3>Recycle</h3><p>Convert waste into new usable materials</p></div><div class="rr-body"><p style="font-size:0.85rem;color:var(--text-light);margin-bottom:16px;line-height:1.6;">Recycling transforms waste materials into new products, conserving natural resources and reducing environmental pollution.</p><div class="dos-donts"><div class="dos"><h5>✅ Do's</h5><ul><li>Sort waste at source</li><li>Use designated bins</li><li>Recycle paper & metal</li><li>Compost food waste</li></ul></div><div class="donts"><h5>❌ Don'ts</h5><ul><li>Don't mix waste types</li><li>Avoid contaminating recycling</li><li>Don't litter recyclables</li><li>Don't burn waste</li></ul></div></div></div></div>
     </div>
-    <div class="awareness-card fade-in">
-      <div class="card-icon"><i class="fas fa-hands-helping"></i></div>
-      <h3>Join Community Drives</h3>
-      <p>Participate in local cleanliness campaigns and community events. Collective action creates visible, lasting change.</p>
-    </div>
-    <div class="awareness-card fade-in">
-      <div class="card-icon"><i class="fas fa-star"></i></div>
-      <h3>Inspire Others</h3>
-      <p>Share your clean habits on social media. Lead by example and encourage friends and family to join the movement.</p>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- LEARN -->
-<section id="learn">
-  <div class="section-center fade-in">
-    <span class="section-tag">Learn</span>
-    <h2 class="section-title">The <span>3R Principle</span></h2>
-    <p class="section-desc">The foundation of sustainable waste management — Reduce, Reuse, and Recycle.</p>
-  </div>
-  <div class="rrs-grid fade-in">
-    <div class="rr-card">
-      <div class="rr-header reduce">
-        <i class="fas fa-compress-arrows-alt"></i>
-        <h3>Reduce</h3>
-        <p>Minimize waste generation from the source</p>
-      </div>
-      <div class="rr-body">
-        <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:16px;line-height:1.6;">Reducing means cutting down the amount of waste you produce. It's the most effective of the 3Rs and should always come first.</p>
-        <div class="dos-donts">
-          <div class="dos">
-            <h5>✅ Do's</h5>
-            <ul>
-              <li>Buy only what you need</li>
-              <li>Choose products with less packaging</li>
-              <li>Use digital over paper</li>
-              <li>Carry reusable bags</li>
-            </ul>
+<!-- SHARE YOUR WORK PAGE -->
+<div id="share-page" class="page-section">
+  <section id="share-section">
+    <div class="fade-in visible">
+      <span class="section-tag">Community</span>
+      <h2 class="section-title">Share Your <span>Work</span></h2>
+      <p class="section-desc">Upload photos of your cleanliness efforts and inspire your community to take action.</p>
+    </div>
+    <div class="share-layout fade-in visible">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchTab('register')">Register</button>
+          <button class="auth-tab" onclick="switchTab('post')">Post</button>
+        </div>
+        <!-- REGISTER FORM -->
+        <div id="registerForm">
+          <div class="form-group"><label>Full Name</label><input type="text" id="regName" placeholder="Your name"></div>
+          <div class="form-group"><label>Email</label><input type="email" id="regEmail" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Password</label><input type="password" id="regPass" placeholder="Create password"></div>
+          <button class="btn-green" onclick="doRegister()">Create Account</button>
+        </div>
+        <!-- POST FORM -->
+        <div id="postForm" style="display:none">
+          <div class="upload-area">
+            <input type="file" accept="image/*" onchange="previewImage(this)">
+            <i class="fas fa-camera"></i>
+            <p id="uploadText">Click to upload photo of clean area</p>
+            <img id="previewImg" style="display:none;width:100%;border-radius:10px;margin-top:8px">
           </div>
-          <div class="donts">
-            <h5>❌ Don'ts</h5>
-            <ul>
-              <li>Don't overbuy perishables</li>
-              <li>Avoid single-use plastics</li>
-              <li>Don't print unnecessarily</li>
-              <li>Avoid excessive packaging</li>
-            </ul>
+          <div class="form-group"><label>Caption</label><textarea rows="3" id="postCaption" placeholder="Describe your cleanliness effort..." style="resize:none"></textarea></div>
+          <button class="btn-green" onclick="addPost()">Share Post ✨</button>
+        </div>
+      </div>
+      <div>
+        <div class="posts-feed" id="postsFeed">
+          <div class="post-card">
+            <div class="post-header"><div class="post-avatar">AM</div><div class="post-user"><h4>Anjali Mehta</h4><span>2 hours ago · Mumbai</span></div></div>
+            <div class="post-image-placeholder">🌿</div>
+            <div class="post-body"><div class="post-tag"><i class="fas fa-check-circle"></i> Verified Clean</div><p>Organized a cleanliness drive in our colony today! 25 volunteers joined and we cleared 3 garbage spots. So proud of our community! 🌱</p><div class="post-actions"><button class="post-action" onclick="likePost(this)"><i class="fas fa-heart"></i> 42 Likes</button><button class="post-action"><i class="fas fa-share"></i> Share</button></div></div>
+          </div>
+          <div class="post-card">
+            <div class="post-header"><div class="post-avatar">RK</div><div class="post-user"><h4>Rahul Kumar</h4><span>5 hours ago · Delhi</span></div></div>
+            <div class="post-image-placeholder">♻️</div>
+            <div class="post-body"><div class="post-tag"><i class="fas fa-check-circle"></i> Verified Clean</div><p>Started a plastic-free morning at Lodhi Garden. Collected 15kg of plastic waste with friends. Every small step counts! #CleanIndia</p><div class="post-actions"><button class="post-action" onclick="likePost(this)"><i class="fas fa-heart"></i> 89 Likes</button><button class="post-action"><i class="fas fa-share"></i> Share</button></div></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="rr-card">
-      <div class="rr-header reuse">
-        <i class="fas fa-sync-alt"></i>
-        <h3>Reuse</h3>
-        <p>Give items a second life before discarding</p>
-      </div>
-      <div class="rr-body">
-        <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:16px;line-height:1.6;">Reusing extends the life of products and materials, reducing the need for new resources and minimizing waste sent to landfills.</p>
-        <div class="dos-donts">
-          <div class="dos">
-            <h5>✅ Do's</h5>
-            <ul>
-              <li>Repair before replacing</li>
-              <li>Donate old items</li>
-              <li>Use refillable containers</li>
-              <li>Repurpose packaging</li>
-            </ul>
-          </div>
-          <div class="donts">
-            <h5>❌ Don'ts</h5>
-            <ul>
-              <li>Don't discard working items</li>
-              <li>Avoid disposable cutlery</li>
-              <li>Don't trash repairable things</li>
-              <li>Avoid throwaway fashion</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="rr-card">
-      <div class="rr-header recycle">
-        <i class="fas fa-recycle"></i>
-        <h3>Recycle</h3>
-        <p>Convert waste into new usable materials</p>
-      </div>
-      <div class="rr-body">
-        <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:16px;line-height:1.6;">Recycling transforms waste materials into new products, conserving natural resources and reducing environmental pollution.</p>
-        <div class="dos-donts">
-          <div class="dos">
-            <h5>✅ Do's</h5>
-            <ul>
-              <li>Sort waste at source</li>
-              <li>Use designated bins</li>
-              <li>Recycle paper & metal</li>
-              <li>Compost food waste</li>
-            </ul>
-          </div>
-          <div class="donts">
-            <h5>❌ Don'ts</h5>
-            <ul>
-              <li>Don't mix waste types</li>
-              <li>Avoid contaminating recycling</li>
-              <li>Don't litter recyclables</li>
-              <li>Don't burn waste</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- SHARE YOUR WORK -->
-<section id="share">
-  <div class="fade-in">
-    <span class="section-tag">Community</span>
-    <h2 class="section-title">Share Your <span>Work</span></h2>
-    <p class="section-desc">Upload photos of your cleanliness efforts and inspire your community to take action.</p>
-  </div>
-  <div class="share-layout fade-in">
-    <div class="auth-card">
-      <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchTab('login')">Login</button>
-        <button class="auth-tab" onclick="switchTab('register')">Register</button>
-        <button class="auth-tab" onclick="switchTab('post')">Post</button>
+<!-- RAISE ISSUE (COMPLAINT) PAGE -->
+<div id="complaint-page" class="page-section">
+  <section id="complaint-section">
+    <div class="issue-layout fade-in visible">
+      <div class="issue-info">
+        <span class="section-tag">Report</span>
+        <h2 class="section-title">Raise an <span>Issue</span></h2>
+        <p class="section-desc">Spotted garbage or a sanitation problem? Report it directly to NMC with your location, photo, and description. We'll ensure it gets addressed.</p>
+        <div class="issue-steps">
+          <div class="issue-step"><div class="step-num">1</div><div class="step-text"><h5>Fill Your Details</h5><p>Enter your name and email for follow-up communication.</p></div></div>
+          <div class="issue-step"><div class="step-num">2</div><div class="step-text"><h5>Fetch Location</h5><p>Auto-detect your GPS location for precise reporting.</p></div></div>
+          <div class="issue-step"><div class="step-num">3</div><div class="step-text"><h5>Upload Photo</h5><p>Attach a photo as evidence for faster resolution.</p></div></div>
+          <div class="issue-step"><div class="step-num">4</div><div class="step-text"><h5>Submit to NMC</h5><p>Your report is emailed to NMC with all details attached.</p></div></div>
+        </div>
       </div>
-      <!-- LOGIN FORM -->
-      <div id="loginForm">
-        <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"></div>
-        <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"></div>
-        <button class="btn-green" onclick="doLogin()">Login</button>
-      </div>
-      <!-- REGISTER FORM -->
-      <div id="registerForm" style="display:none">
-        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
-        <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"></div>
-        <div class="form-group"><label>Password</label><input type="password" placeholder="Create password"></div>
-        <button class="btn-green" onclick="doRegister()">Create Account</button>
-      </div>
-      <!-- POST FORM -->
-      <div id="postForm" style="display:none">
-        <div class="upload-area">
-          <input type="file" accept="image/*" onchange="previewImage(this)">
+      <div class="issue-form-card">
+        <h4>📍 Report a Sanitation Issue</h4>
+        <div class="form-group"><label>Your Name</label><input type="text" id="issueName" placeholder="Enter your name"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="issueEmail" placeholder="your@email.com"></div>
+        <div class="form-group"><label>Location (Auto Detected)</label>
+          <div class="location-field">
+            <input type="text" id="issueLocation" placeholder="Click GPS to detect location" readonly>
+            <button class="btn-locate" onclick="detectLocation()"><i class="fas fa-location-arrow"></i> GPS</button>
+          </div>
+        </div>
+        <div class="form-group"><label>Date & Time</label><input type="text" id="issueDateTime" readonly></div>
+        <div class="form-group"><label>Description (Optional)</label><textarea rows="3" id="issueDesc" placeholder="Describe the issue..." style="resize:none"></textarea></div>
+        <div class="upload-area" style="margin-bottom:18px">
+          <input type="file" accept="image/*" id="issueImage">
           <i class="fas fa-camera"></i>
-          <p id="uploadText">Click to upload photo of clean area</p>
-          <img id="previewImg" style="display:none;width:100%;border-radius:10px;margin-top:8px">
+          <p>Upload photo of the issue</p>
         </div>
-        <div class="form-group"><label>Caption</label><textarea rows="3" placeholder="Describe your cleanliness effort..." style="resize:none"></textarea></div>
-        <button class="btn-green" onclick="addPost()">Share Post ✨</button>
-      </div>
-    </div>
-    <div>
-      <div class="posts-feed" id="postsFeed">
-        <div class="post-card">
-          <div class="post-header">
-            <div class="post-avatar">AM</div>
-            <div class="post-user"><h4>Anjali Mehta</h4><span>2 hours ago · Mumbai</span></div>
-          </div>
-          <div class="post-image-placeholder">🌿</div>
-          <div class="post-body">
-            <div class="post-tag"><i class="fas fa-check-circle"></i> Verified Clean</div>
-            <p>Organized a cleanliness drive in our colony today! 25 volunteers joined and we cleared 3 garbage spots. So proud of our community! 🌱</p>
-            <div class="post-actions">
-              <button class="post-action" onclick="likePost(this)"><i class="fas fa-heart"></i> 42 Likes</button>
-              <button class="post-action"><i class="fas fa-share"></i> Share</button>
-            </div>
-          </div>
-        </div>
-        <div class="post-card">
-          <div class="post-header">
-            <div class="post-avatar">RK</div>
-            <div class="post-user"><h4>Rahul Kumar</h4><span>5 hours ago · Delhi</span></div>
-          </div>
-          <div class="post-image-placeholder">♻️</div>
-          <div class="post-body">
-            <div class="post-tag"><i class="fas fa-check-circle"></i> Verified Clean</div>
-            <p>Started a plastic-free morning at Lodhi Garden. Collected 15kg of plastic waste with friends. Every small step counts! #CleanIndia</p>
-            <div class="post-actions">
-              <button class="post-action" onclick="likePost(this)"><i class="fas fa-heart"></i> 89 Likes</button>
-              <button class="post-action"><i class="fas fa-share"></i> Share</button>
-            </div>
-          </div>
+        <button class="btn-nmc" onclick="submitIssue()"><i class="fas fa-paper-plane"></i> Send to NMC</button>
+        <div class="success-msg" id="issueSuccess">
+          <i class="fas fa-check-circle"></i>
+          <h4>Issue Reported Successfully! 🎉</h4>
+          <p>Your report has been sent to NMC. They will take action within 48–72 hours. Thank you for contributing!</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- RAISE ISSUE -->
-<section id="raise-issue">
-  <div class="issue-layout fade-in">
-    <div class="issue-info">
-      <span class="section-tag">Report</span>
-      <h2 class="section-title">Raise an <span>Issue</span></h2>
-      <p class="section-desc">Spotted garbage or a sanitation problem? Report it directly to NMC with your location, photo, and description. We'll ensure it gets addressed.</p>
-      <div class="issue-steps">
-        <div class="issue-step">
-          <div class="step-num">1</div>
-          <div class="step-text"><h5>Fill Your Details</h5><p>Enter your name and email for follow-up communication.</p></div>
-        </div>
-        <div class="issue-step">
-          <div class="step-num">2</div>
-          <div class="step-text"><h5>Fetch Location</h5><p>Auto-detect your GPS location for precise reporting.</p></div>
-        </div>
-        <div class="issue-step">
-          <div class="step-num">3</div>
-          <div class="step-text"><h5>Upload Photo</h5><p>Attach a photo as evidence for faster resolution.</p></div>
-        </div>
-        <div class="issue-step">
-          <div class="step-num">4</div>
-          <div class="step-text"><h5>Submit to NMC</h5><p>Your report is emailed to NMC with all details attached.</p></div>
-        </div>
-      </div>
+<!-- QUIZ PAGE -->
+<div id="quiz-page" class="page-section">
+  <section id="quiz-section">
+    <div class="section-center fade-in visible">
+      <span class="section-tag">Quiz</span>
+      <h2 class="section-title">Test Your <span>Knowledge</span></h2>
+      <p class="section-desc">How much do you know about cleanliness and waste management? Find out!</p>
     </div>
-    <div class="issue-form-card">
-      <h4>📍 Report a Sanitation Issue</h4>
-      <div class="form-group"><label>Your Name</label><input type="text" id="issueName" placeholder="Enter your name"></div>
-      <div class="form-group"><label>Email Address</label><input type="email" id="issueEmail" placeholder="your@email.com"></div>
-      <div class="form-group"><label>Location (Auto Detected)</label>
-        <div class="location-field">
-          <input type="text" id="issueLocation" placeholder="Click GPS to detect location" readonly>
-          <button class="btn-locate" onclick="detectLocation()"><i class="fas fa-location-arrow"></i> GPS</button>
+    <div class="quiz-container fade-in visible">
+      <div class="quiz-intro" id="quizIntro">
+        <h3>🧠 Test Your Cleanliness Knowledge</h3>
+        <p>15 questions · Multiple Choice · Earn a Certificate!</p>
+        <button class="btn-quiz" onclick="startQuiz()">Take Quiz <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="quiz-box" id="quizBox">
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill"></div></div>
+        <div class="quiz-header"><span class="quiz-q-num" id="qNum">Question 1 of 15</span><span class="quiz-score-badge" id="scoreBadge">Score: 0</span></div>
+        <div class="quiz-body"><p class="quiz-question" id="questionText"></p><div class="quiz-options" id="optionsContainer"></div></div>
+        <div class="quiz-footer"><button class="btn-next" id="nextBtn" onclick="nextQuestion()">Next <i class="fas fa-arrow-right"></i></button></div>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="result-circle"><div class="result-score" id="resultScore">0</div><div class="result-total">out of 15</div></div>
+        <div class="result-badge" id="resultBadge"></div>
+        <h3 class="result-title" id="resultTitle"></h3>
+        <p class="result-desc" id="resultDesc"></p>
+        <div class="result-btns">
+          <button class="btn-check" onclick="showReview()">Review Answers</button>
+          <button class="btn-cert" onclick="showCertificate()">🎓 Download Certificate</button>
+          <button class="btn-retry" onclick="resetQuiz()">Try Again</button>
         </div>
       </div>
-      <div class="form-group"><label>Date & Time</label><input type="text" id="issueDateTime" readonly></div>
-      <div class="form-group"><label>Description (Optional)</label><textarea rows="3" id="issueDesc" placeholder="Yaha kachra hai... describe the issue" style="resize:none"></textarea></div>
-      <div class="upload-area" style="margin-bottom:18px">
-        <input type="file" accept="image/*" id="issueImage">
-        <i class="fas fa-camera"></i>
-        <p>Upload photo of the issue</p>
-      </div>
-      <button class="btn-nmc" onclick="submitIssue()"><i class="fas fa-paper-plane"></i> Send to NMC</button>
-      <div class="success-msg" id="issueSuccess">
-        <i class="fas fa-check-circle"></i>
-        <h4>Issue Reported Successfully! 🎉</h4>
-        <p>Your report has been sent to NMC. They will take action within 48–72 hours. Thank you for contributing!</p>
-      </div>
+      <div class="review-section" id="reviewSection"></div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- QUIZ -->
-<section id="quiz">
-  <div class="section-center fade-in">
-    <span class="section-tag">Quiz</span>
-    <h2 class="section-title">Test Your <span>Knowledge</span></h2>
-    <p class="section-desc">How much do you know about cleanliness and waste management? Find out!</p>
-  </div>
-  <div class="quiz-container fade-in">
-    <div class="quiz-intro" id="quizIntro">
-      <h3>🧠 Test Your Cleanliness Knowledge</h3>
-      <p>15 questions · Multiple Choice · Earn a Certificate!</p>
-      <button class="btn-quiz" onclick="startQuiz()">Take Quiz <i class="fas fa-arrow-right"></i></button>
+<!-- GET INVOLVED PAGE -->
+<div id="get-involved-page" class="page-section">
+  <section id="get-involved-section">
+    <div class="section-center fade-in visible">
+      <span class="section-tag">Get Involved</span>
+      <h2 class="section-title">Join the <span>Movement</span></h2>
+      <p class="section-desc">There are many ways to contribute to a cleaner, healthier India. Pick your path!</p>
     </div>
-    <div class="quiz-box" id="quizBox">
-      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill"></div></div>
-      <div class="quiz-header">
-        <span class="quiz-q-num" id="qNum">Question 1 of 15</span>
-        <span class="quiz-score-badge" id="scoreBadge">Score: 0</span>
-      </div>
-      <div class="quiz-body">
-        <p class="quiz-question" id="questionText"></p>
-        <div class="quiz-options" id="optionsContainer"></div>
-      </div>
-      <div class="quiz-footer">
-        <button class="btn-next" id="nextBtn" onclick="nextQuestion()">Next <i class="fas fa-arrow-right"></i></button>
-      </div>
+    <div class="involved-grid fade-in visible">
+      <div class="involved-card"><div class="involved-icon">🧹</div><h3>Volunteer</h3><p>Join our weekend cleanliness drives and make a visible difference in your city.</p><button class="btn-outline">Sign Up</button></div>
+      <div class="involved-card"><div class="involved-icon">📢</div><h3>Spread Awareness</h3><p>Share CleanSphere's mission on social media. Educate your friends and family.</p><button class="btn-outline">Share Now</button></div>
+      <div class="involved-card"><div class="involved-icon">💰</div><h3>Donate</h3><p>Support our operations by contributing funds for equipment and campaigns.</p><button class="btn-outline">Donate</button></div>
+      <div class="involved-card"><div class="involved-icon">🏫</div><h3>School Programs</h3><p>Bring CleanSphere to your school. We run interactive workshops for students.</p><button class="btn-outline">Partner With Us</button></div>
+      <div class="involved-card"><div class="involved-icon">🏢</div><h3>Corporate CSR</h3><p>Partner with CleanSphere for your company's CSR initiatives.</p><button class="btn-outline">Contact Us</button></div>
+      <div class="involved-card"><div class="involved-icon">📸</div><h3>Document Change</h3><p>Be a CleanSphere ambassador — document before and after photos.</p><button class="btn-outline">Get Badge</button></div>
     </div>
-    <div class="quiz-result" id="quizResult">
-      <div class="result-circle">
-        <div class="result-score" id="resultScore">0</div>
-        <div class="result-total">out of 15</div>
-      </div>
-      <div class="result-badge" id="resultBadge"></div>
-      <h3 class="result-title" id="resultTitle"></h3>
-      <p class="result-desc" id="resultDesc"></p>
-      <div class="result-btns">
-        <button class="btn-check" onclick="showReview()">Review Answers</button>
-        <button class="btn-cert" onclick="showCertificate()">🎓 Download Certificate</button>
-        <button class="btn-retry" onclick="resetQuiz()">Try Again</button>
-      </div>
-    </div>
-    <div class="review-section" id="reviewSection"></div>
-  </div>
-</section>
-
-<!-- GET INVOLVED -->
-<section id="get-involved">
-  <div class="section-center fade-in">
-    <span class="section-tag">Get Involved</span>
-    <h2 class="section-title">Join the <span>Movement</span></h2>
-    <p class="section-desc">There are many ways to contribute to a cleaner, healthier India. Pick your path!</p>
-  </div>
-  <div class="involved-grid fade-in">
-    <div class="involved-card">
-      <div class="involved-icon">🧹</div>
-      <h3>Volunteer</h3>
-      <p>Join our weekend cleanliness drives and make a visible difference in your city. No experience needed — just willingness!</p>
-      <button class="btn-outline">Sign Up</button>
-    </div>
-    <div class="involved-card">
-      <div class="involved-icon">📢</div>
-      <h3>Spread Awareness</h3>
-      <p>Share CleanSphere's mission on social media. Educate your friends and family about proper waste management.</p>
-      <button class="btn-outline">Share Now</button>
-    </div>
-    <div class="involved-card">
-      <div class="involved-icon">💰</div>
-      <h3>Donate</h3>
-      <p>Support our operations by contributing funds for equipment, awareness campaigns, and community drives.</p>
-      <button class="btn-outline">Donate</button>
-    </div>
-    <div class="involved-card">
-      <div class="involved-icon">🏫</div>
-      <h3>School Programs</h3>
-      <p>Bring CleanSphere to your school or college. We run interactive workshops and cleanliness programs for students.</p>
-      <button class="btn-outline">Partner With Us</button>
-    </div>
-    <div class="involved-card">
-      <div class="involved-icon">🏢</div>
-      <h3>Corporate CSR</h3>
-      <p>Partner with CleanSphere for your company's CSR initiatives. Together we can create large-scale impact.</p>
-      <button class="btn-outline">Contact Us</button>
-    </div>
-    <div class="involved-card">
-      <div class="involved-icon">📸</div>
-      <h3>Document Change</h3>
-      <p>Be a CleanSphere ambassador — document before and after photos of cleanliness efforts in your area.</p>
-      <button class="btn-outline">Get Badge</button>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="logo">🌿 CleanSphere</span>
+      <span class="logo" onclick="navigateTo('home')" style="cursor:pointer;">🌿 CleanSphere</span>
       <p>A citizen-driven cleanliness awareness platform dedicated to building cleaner, healthier communities across India through technology and collective action.</p>
       <div class="social-icons">
         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
@@ -1050,20 +878,20 @@ footer {
     <div class="footer-col">
       <h5>Quick Links</h5>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#awareness">Awareness</a></li>
-        <li><a href="#learn">Learn 3Rs</a></li>
-        <li><a href="#quiz">Take Quiz</a></li>
+        <li><a onclick="navigateTo('home')">Home</a></li>
+        <li><a onclick="navigateTo('about')">About Us</a></li>
+        <li><a onclick="navigateTo('awareness')">Awareness</a></li>
+        <li><a onclick="navigateTo('learn')">Learn 3Rs</a></li>
+        <li><a onclick="navigateTo('quiz')">Take Quiz</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Actions</h5>
       <ul>
-        <li><a href="#get-involved">Get Involved</a></li>
-        <li><a href="#raise-issue">Raise Issue</a></li>
-        <li><a href="#share">Share Work</a></li>
-        <li><a href="#quiz">Earn Certificate</a></li>
+        <li><a onclick="navigateTo('get-involved')">Get Involved</a></li>
+        <li><a onclick="navigateTo('complaint')">Raise Issue</a></li>
+        <li><a onclick="navigateTo('share')">Share Work</a></li>
+        <li><a onclick="navigateTo('quiz')">Earn Certificate</a></li>
       </ul>
     </div>
   </div>
@@ -1102,27 +930,28 @@ footer {
 </div>
 
 <script>
+// ===== PAGE NAVIGATION (MULTI-PAGE EXPERIENCE) =====
+function navigateTo(page) {
+  // Hide all pages
+  document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+  // Show selected page
+  document.getElementById(page + '-page').classList.add('active');
+  
+  // Update active nav link
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const pageNames = ['home', 'about', 'awareness', 'learn', 'quiz', 'get-involved', 'complaint', 'share'];
+  const index = pageNames.indexOf(page);
+  if (index !== -1 && navLinks[index]) navLinks[index].classList.add('active');
+  
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  closeMenu();
+}
+
 // ===== NAVBAR =====
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section');
-  const links = document.querySelectorAll('.nav-links a');
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id'); });
-  links.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-});
-
-// ===== FADE IN =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 // ===== DATETIME =====
 function setDateTime() {
@@ -1162,7 +991,6 @@ function detectLocation() {
 function submitIssue() {
   const name = document.getElementById('issueName').value.trim();
   const email = document.getElementById('issueEmail').value.trim();
-  const loc = document.getElementById('issueLocation').value.trim();
   if (!name || !email) { alert('Please fill in Name and Email!'); return; }
   const btn = document.querySelector('.btn-nmc');
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
@@ -1173,19 +1001,23 @@ function submitIssue() {
   }, 2000);
 }
 
-// ===== AUTH TABS =====
+// ===== AUTH TABS (LOGIN REMOVED) =====
 function switchTab(tab) {
-  ['login','register','post'].forEach(t => {
-    document.getElementById(t + 'Form').style.display = 'none';
-  });
+  document.getElementById('registerForm').style.display = 'none';
+  document.getElementById('postForm').style.display = 'none';
   document.querySelectorAll('.auth-tab').forEach((btn, i) => {
     btn.classList.remove('active');
-    if (['login','register','post'][i] === tab) btn.classList.add('active');
+    if ((tab === 'register' && i === 0) || (tab === 'post' && i === 1)) btn.classList.add('active');
   });
   document.getElementById(tab + 'Form').style.display = 'block';
 }
-function doLogin() { alert('✅ Logged in successfully! You can now share your work.'); switchTab('post'); }
-function doRegister() { alert('🎉 Account created! Welcome to CleanSphere.'); switchTab('post'); }
+function doRegister() {
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  if (!name || !email) { alert('Please fill in all fields!'); return; }
+  alert('🎉 Account created! Welcome to CleanSphere. You can now share your work.');
+  switchTab('post');
+}
 
 // ===== POST =====
 function previewImage(input) {
@@ -1204,6 +1036,7 @@ function addPost() {
   const card = document.createElement('div');
   card.className = 'post-card';
   const preview = document.getElementById('previewImg');
+  const caption = document.getElementById('postCaption').value || 'Shared a cleanliness effort! 🌿 #CleanSphere #JoinTheChange';
   const imgHTML = preview.style.display !== 'none'
     ? `<img src="${preview.src}" style="width:100%;max-height:250px;object-fit:cover">`
     : `<div class="post-image-placeholder">📸</div>`;
@@ -1215,7 +1048,7 @@ function addPost() {
     ${imgHTML}
     <div class="post-body">
       <div class="post-tag"><i class="fas fa-check-circle"></i> New Post</div>
-      <p>Shared a cleanliness effort! 🌿 #CleanSphere #JoinTheChange</p>
+      <p>${caption}</p>
       <div class="post-actions">
         <button class="post-action" onclick="likePost(this)"><i class="fas fa-heart"></i> 0 Likes</button>
         <button class="post-action"><i class="fas fa-share"></i> Share</button>
@@ -1223,6 +1056,9 @@ function addPost() {
     </div>`;
   feed.insertBefore(card, feed.firstChild);
   alert('✅ Post shared successfully!');
+  document.getElementById('postCaption').value = '';
+  document.getElementById('previewImg').style.display = 'none';
+  document.getElementById('uploadText').textContent = 'Click to upload photo of clean area';
 }
 function likePost(btn) {
   const match = btn.textContent.match(/\d+/);
@@ -1315,35 +1151,3 @@ function showReview() {
         else if (oi === ua && ua !== ca) cls = 'wrong-ans';
         const icon = oi === ca ? '✓' : (oi === ua ? '✗' : '');
         return `<div class="review-opt ${cls}">${letters[oi]}. ${opt} <span style="margin-left:auto">${icon}</span></div>`;
-      }).join('');
-      return `<div class="review-q"><div class="question-text">Q${qi+1}. ${q.q}</div><div class="review-options">${optsHTML}</div></div>`;
-    }).join('');
-  rev.scrollIntoView({ behavior: 'smooth' });
-}
-function resetQuiz() {
-  document.getElementById('quizResult').style.display = 'none';
-  document.getElementById('reviewSection').style.display = 'none';
-  document.getElementById('quizIntro').style.display = 'block';
-}
-function showCertificate() {
-  const name = prompt('Enter your name for the certificate:', 'Your Name') || 'Participant';
-  document.getElementById('certName').textContent = name;
-  document.getElementById('certScore').textContent = score;
-  let lvl = score <= 5 ? 'Learner' : score <= 10 ? 'Good' : 'Hero';
-  document.getElementById('certLevel').textContent = lvl;
-  document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'long', year:'numeric' });
-  document.getElementById('certificate-modal').classList.add('open');
-}
-function closeCert() { document.getElementById('certificate-modal').classList.remove('open'); }
-function downloadCert() {
-  const cert = document.getElementById('certificate');
-  html2canvas(cert, { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
-    const a = document.createElement('a');
-    a.download = 'CleanSphere_Certificate.png';
-    a.href = canvas.toDataURL('image/png');
-    a.click();
-  });
-}
-</script>
-</body>
-</html>
